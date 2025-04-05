@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boost Your Sales helps businesses launch and scale their online stores with ease. Join our platform to grow your brand today.">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopi - Boost Your Sales</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300..800&display=swap" as="style">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="contact">
+<header>
+    <nav class="header__container container">
+        <a href="index.html" target="_self" class="logo">Shopi</a>
+        <ul class="header__menu">
+            <li><a href="About.html" class="header__menu__element">WHY US</a></li>
+            <li><a href="Pricing.html" class="header__menu__element">PRICES</a></li>
+            <li><a href="Gallery.html" class="header__menu__element">GALLERY</a></li>
+            <li><a href="Contact.html" class="header__menu__element">CONTACT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="form">
+    <div class="form__main__container">
+        <div class="form__container form__container1">
+            <h5 class="questions">Any questions?</h5>
+            <span>Leave your email address or call us!</span>
+            <div class="contact__information">
+                <span class="contact__mail contact__info">info@bestshop.xyz</span>
+                <span class="contact__phone contact__info">123 456 789</span>
+            </div>
+        </div>
+        <div class="form__container form__container2">
+            <form id="contact-form">
+            <label for="message-subject" class="form__label">Message Subject:</label>
+                <select id="message-subject" name="message-subject" class="form__select" required>
+                    <option value="sales">Offer Inquiry</option>
+                    <option value="support">Tech Support</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <span class="form__information">E-MAIL</span>
+                <input type="text" class="form__information__input" name="email" placeholder="Enter your email" required/>
+
+                <span class="form__information">MESSAGE</span>
+                <textarea class="form__information__input form__textarea" name="message" placeholder="Enter your message" required></textarea>
+
+                <div class="form__consent">
+                    <label class="form__checkbox">
+                        <input type="checkbox" class="checkboxes" required>
+                        <span class="form__consent__text"></span>
+                        I hereby give consent for my personal data included in my application to be processed for the purposes of the recruitment process in accordance with the European Parliament and the Council of the European Union Regulation of April 27, 2016, on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, repealing Directive 95/46/EC (General Data Protection Regulation - GDPR).
+                    </label>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Send"/>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer__content">
+        <div class="footer__logo">
+            <span class="footer__logo_text">Shopi</span>
+            <span class="footer__logo__info">© 2025 AGH Metody Wytwarzania Oprogramowania, Natalia Grzywna, All Rights Reserved</span>
+        </div>
+        <div class="footer__links">
+            <a href="https://x.com" class="footer__link1" aria-label="X"></a>
+            <a href="https://facebook.com" class="footer__link2" aria-label="Facebook"></a>
+        </div>
+    </div>
+</footer>
+<div id="toast-container"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = form.querySelector('input[name="email"]').value;
+            const message = form.querySelector('textarea[name="message"]').value;
+            const checkbox = form.querySelector('input[type="checkbox"]').checked;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            let isValid = true;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                isValid = false;
+            }
+
+            if (message.trim() === "") {
+                alert("Please enter a message.");
+                isValid = false;
+            }
+
+            if (!checkbox) {
+                alert("You must give consent for your personal data to be processed.");
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return;
+            }
+
+            console.log("Sending data:", {
+                subject: form.querySelector('#message-subject').value,
+                email,
+                message
+            });
+
+            showToast("Message sent 💙")
+
+            form.reset();
+        });
+    });
+    function showToast(message) {
+        const toastContainer = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        toast.textContent = message;
+
+        toastContainer.appendChild(toast);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 4000);
+    }
+
+</script>
+
+</body>
+</html>
+
