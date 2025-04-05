@@ -670,7 +670,7 @@ h2 {
 
 footer {
     width: 100vw;
-    height: 89px;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
